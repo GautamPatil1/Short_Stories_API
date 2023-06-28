@@ -3,6 +3,8 @@
 
 The Short Stories API is built using Django, a powerful web framework for building web applications, and the Django REST Framework (DRF), an extension to Django for creating RESTful APIs. It provides developers with a simple and convenient way to access a collection of short stories in various genres.
 
+View the API Information/Documentation here: [https://github.com/GautamPatil1/Short_Stories_API](https://github.com/GautamPatil1/Short_Stories_API)
+
 ### Architecture
 
 The API follows a client-server architecture, where clients can make HTTP requests to the API server to retrieve short stories or perform other actions. The server processes the requests and sends back the corresponding responses in JSON format.
