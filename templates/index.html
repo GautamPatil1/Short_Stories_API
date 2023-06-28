@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Short Stories API Documentation</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="short-stories-api-documentation">Short Stories API Documentation</h1>
+<p>The Short Stories API is a robust and versatile API that provides developers access to a vast collection of captivating short stories across multiple genres. This API is designed to offer an immersive storytelling experience, allowing users to discover and explore intriguing narratives from the realms of fantasy, horror, mystery, and philosophy.<br>
+The Short Stories API is built using Django, a powerful web framework for building web applications, and the Django REST Framework (DRF), an extension to Django for creating RESTful APIs. It provides developers with a simple and convenient way to access a collection of short stories in various genres.</p>
+<h3 id="architecture">Architecture</h3>
+<p>The API follows a client-server architecture, where clients can make HTTP requests to the API server to retrieve short stories or perform other actions. The server processes the requests and sends back the corresponding responses in JSON format.</p>
+<h2 id="base-url">Base URL</h2>
+<p>The base URL for all API endpoints is: <code>https://your-api-domain.com/</code></p>
+<h2 id="endpoints">Endpoints</h2>
+<h3 id="random-story">Random Story</h3>
+<p>Experience the element of surprise and serendipity by retrieving a captivating short story randomly selected from the vast repository of tales available.</p>
+<p><code>/random/</code>: This endpoint retrieves a random short story from the collection of stories. Each time a request is made to this endpoint, a different story is returned, allowing users to discover new stories with every request.</p>
+<p><strong>Endpoint:</strong> <code>/random/</code></p>
+<p><strong>HTTP Method:</strong> GET</p>
+<p><strong>Response Format:</strong> JSON</p>
+<p><strong>Response Fields:</strong></p>
+<ul>
+<li><code>Name</code> (string): The title of the randomly selected short story.</li>
+<li><code>Author</code> (string): The name of the talented author who crafted the story.</li>
+<li><code>Cover</code> (string): A visually captivating cover image that sets the mood for the story.</li>
+<li><code>Genre</code> (string): The overarching genre of the short story.</li>
+<li><code>Sub-Genre</code> (string): A more specific sub-genre classification that defines the story’s unique attributes and themes.</li>
+<li><code>Content</code> (string): The immersive text content of the short story that will transport readers into a world of imagination and emotion.</li>
+</ul>
+<p><strong>Example Request:</strong></p>
+<pre><code>GET /random/
+</code></pre>
+<p><strong>Example Response:</strong></p>
+<pre><code>{
+	"Name": "Signs and Symbold",
+	"Author": "Vladimir Nabokov",
+	"Cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1452806041i/28236029._UY200_.jpg",
+	"Genre": "Philosophy",
+	"Sub-Genre": "Fantasy",
+	"content": "\nFor the fourth time in as many years, they were confronted with the problem of what birthday present to take to a young man who was in...
+}
+</code></pre>
+<h3 id="story-by-genre">Story by Genre</h3>
+<p>Delve into the enchanting world of a specific genre by retrieving a captivating short story tailored to your preferences.</p>
+<p><code>/&lt;genre&gt;/</code>: These endpoints are used to retrieve a short story from a specific genre, such as fantasy, horror, mystery, or philosophy. By specifying the desired genre in the URL, users can access a story that aligns with their preferences.</p>
+<p><strong>Endpoint:</strong> <code>/&lt;genre&gt;/</code></p>
+<p><strong>HTTP Method:</strong> GET</p>
+<p><strong>Response Format:</strong> JSON</p>
+<p><strong>Response Fields:</strong></p>
+<ul>
+<li><code>Genre</code> (string): The broad genre category to which the short story belongs.</li>
+<li><code>Name</code> (string): The captivating title of the short story that encapsulates its essence.</li>
+<li><code>Author</code> (string): The masterful author responsible for crafting the story’s narrative.</li>
+<li><code>Cover</code> (string): An aesthetically pleasing cover image that visually represents the story’s genre and evokes anticipation.</li>
+<li><code>Content</code> (string): The immersive text content of the short story that vividly captures the imagination and emotions of readers.</li>
+</ul>
+<p><strong>Available Genres:</strong></p>
+<ol>
+<li>Fantasy</li>
+<li>Horror</li>
+<li>Mystery</li>
+<li>Philosophy</li>
+</ol>
+<p><strong>Example Request:</strong></p>
+<pre><code>GET /fantasy/
+</code></pre>
+<p><strong>Example Response:</strong></p>
+<pre><code>{
+
+	"Name": "All Summer in a Day",
+	"Author": "Ray Bradbury",
+	"Cover": "http://poster.4teachers.org/imgFileWizard/107436.jpg",
+	"Genre": "Fantasy",
+	"Sub-Genre": "Science Fiction",
+	"content": "\n\"Ready ?\"\n\"Ready.\"\n\"Now ?\"\n\"Soon.\"\n\"Do the scientists really know? Will it\nhappen today, will it ?\"\n\"Look...
+</code></pre>
+<h3 id="multiple-stories-by-genre">Multiple Stories by Genre</h3>
+<p>Immerse yourself in a collection of captivating short stories by retrieving multiple tales from a specific genre.</p>
+<p><code>/&lt;genre&gt;/&lt;count&gt;/</code>: These endpoints allow users to retrieve multiple short stories from a specific genre. Users can specify the desired number of stories they want to retrieve, making it convenient to access a batch of stories in one request.</p>
+<p><strong>Endpoint:</strong> <code>&lt;genre&gt;/&lt;count&gt;/</code></p>
+<p><strong>HTTP Method:</strong> GET</p>
+<p><strong>Response Format:</strong> JSON</p>
+<p><strong>Response Fields:</strong></p>
+<ul>
+<li><code>Genre</code> (string): The broad genre category to which the short stories belong.</li>
+<li><code>Stories</code> (array): An array of short stories, each containing the following fields:
+<ul>
+<li><code>Name</code> (string): The captivating title of the short story.</li>
+<li><code>Author</code> (string): The masterful author responsible for crafting the story’s narrative.</li>
+<li><code>Cover</code> (string): An aesthetically pleasing cover image that visually represents the story’s genre and evokes anticipation.</li>
+<li><code>Content</code> (string): The immersive text content of the short story that vividly captures the imagination and emotions of readers.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Available Genres:</strong></p>
+<ol>
+<li>Fantasy</li>
+<li>Horror</li>
+<li>Mystery</li>
+<li>Philosophy</li>
+</ol>
+<p><strong>Example Request:</strong></p>
+<pre class=" language-bash"><code class="prism  language-bash">GET /fantasy/2/
+</code></pre>
+<p><strong>Example Response:</strong></p>
+<pre><code>{
+
+	"Fantasy_Stories" : [
+		{
+			"Name": "Signs and Symbold",
+			"Author": "Vladimir Nabokov",
+			"Cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1452806041i/28236029._UY200_.jpg",
+			"Genre": "Philosophy",
+			"Sub-Genre": "Fantasy",
+			"content": "\nFor the fourth time in as many years, they were confronted with the problem of what birthday present to take to a young man...
+		},
+		{
+			"Name": "All Summer in a Day",
+			"Author": "Ray Bradbury",
+			"Cover": "http://poster.4teachers.org/imgFileWizard/107436.jpg",
+			"Genre": "Fantasy",
+			"Sub-Genre": "Science Fiction",
+			"content": "\n\"Ready ?\"\n\"Ready.\"\n\"Now ?\"\n\"Soon.\"\n\"Do the scientists really know? Will it\nhappen today, will it ?\"\n\"Look...
+		}
+	 ]
+   
+}
+</code></pre>
+<h2 id="error-handling">Error Handling</h2>
+<p>The Short Stories API includes robust error handling mechanisms to ensure a smooth and error-free experience. The API provides informative error responses for various scenarios:</p>
+<ul>
+<li>If a requested genre is not found, the API responds with a <code>404 Not Found</code> status code and an error message indicating the invalid genre selection.</li>
+<li>If no stories are found for a requested genre, the API responds with a <code>404 Not Found</code> status code and an error message indicating that no stories are available for the selected genre.</li>
+<li>If the count value provided for multiple stories is invalid (e.g., not a positive integer), the API responds with a <code>400 Bad Request</code> status code and an error message indicating the invalid count value.</li>
+<li>If the count value provided exceeds the available number of stories in a genre, the API responds with a <code>400 Bad Request</code> status code and an error message indicating that there are not enough stories available for the requested count.</li>
+</ul>
+<p>Please refer to the respective error response messages in the previous examples for more detailed explanations.</p>
+<p>That concludes the comprehensive documentation for the Short Stories API. We hope this API enables you to unlock a world of captivating narratives and provides your users with an immersive storytelling experience. Enjoy the journey through the realms of fantasy, horror, mystery, and philosophy!</p>
+<h2 id="contribute">Contribute</h2>
+<p>If you would like to contribute to the Short Stories API, you can help by:</p>
+<ul>
+<li>Adding more short stories to the existing genres</li>
+<li>Introducing new genres and their corresponding stories</li>
+<li>Improving the API documentation or suggesting enhancements</li>
+</ul>
+<p>To contribute, you can follow these steps:</p>
+<ol>
+<li>Fork the repository on GitHub: <a href="https://github.com/your-repo">https://github.com/your-repo</a></li>
+<li>Make your desired changes or additions.</li>
+<li>Submit a pull request describing the changes you’ve made.</li>
+</ol>
+<p>Your contributions are greatly appreciated and will make the Short Stories API even better!</p>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>Please note that the stories provided by the API are for demonstration purposes only. The API owner does not own any rights to the stories and cannot guarantee their accuracy, completeness, or legal status. If you have any concerns regarding copyright or intellectual property rights, please reach out to the original authors or rights holders.</p>
+</div>
+</body>
+
+</html>
